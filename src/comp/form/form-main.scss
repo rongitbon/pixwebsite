@@ -1,0 +1,82 @@
+@import "../../sass-base/main.scss";
+
+.form-main {
+    background-image: linear-gradient(45deg,
+                                      rgba($color-white, 1) 0%,
+                                      rgba($color-white, 1) 68%,
+                                      transparent 68%),
+                                      url('../../img/backgrounds-blank-blue-953214.jpg');
+    background-size: 100%;
+    border-radius: .5rem;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .2);
+    position: relative;
+    text-align: left;
+
+    @include respond(small) {
+        background-image: linear-gradient(rgba($color-white, 0.7),
+                                          rgba($color-white, 0.7)),
+                                          url('../../img/backgrounds-blank-blue-953214.jpg');
+    background-size: 100%;
+    }
+
+    &-signup {
+        width: 55%;
+        padding: 4rem 7rem;
+
+        @include respond(small) {
+            width: inherit;
+        }
+
+        &-h {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 2rem;
+
+            @include respond(small) {
+                text-align: center
+            }
+        }
+
+        & > :last-child {
+            margin-top: 2rem;
+        }
+    }
+
+    &-content {
+        position: absolute;
+        right: 8%;
+        top: 5%;
+
+        @include respond(average) {
+            right: 5%;
+            top: 3.5%;
+        }
+
+        @include respond(small) {
+            visibility: hidden;
+        }
+
+        &-h {
+            text-align: center;
+            line-height: 5rem;
+            width: 20rem;
+            color: $color-white;
+            font-size: 5rem;
+        }
+
+        &-t {
+            text-align: center;
+            color: $color-white;
+            width: 20rem;
+            font-size: 1.5rem;
+        }
+    }
+
+    &-btn {
+        width: 100%;
+
+        @include respond(small) {
+            text-align: center
+        }
+    }
+}

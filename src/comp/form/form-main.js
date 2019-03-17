@@ -1,0 +1,222 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import Input from './input/input.js';
+import Backdrop from '../backdrop/backdrop.js';
+import Message from '../message/message.js';
+import Hsecondary from "../heading-secondary/h-secondary.js";
+import BtnAn from "../button/btn-an.js";
+import Loader from "../loader/loader.js";
+import * as action from '../../store/actions/index.js';
+import * as actionType from '../../store/actions/actionType.js';
+import "./form-main.scss";
+
+class FormMain extends Component {
+    state = {
+        signupForm: {
+            email: {
+                elementType: 'input-v1',
+                elementConfig: {
+                    type: 'email',
+                    placeholder: 'Enter your Email'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    isEmail: true
+                },
+                valid: false,
+                touched: false,
+                label: true
+            },
+            nickname: {
+                elementType: 'input-v1',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Enter your nickname'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                },
+                valid: false,
+                touched: false,
+                label: true
+            },
+            password: {
+                elementType: 'input-v1',
+                elementConfig: {
+                    type: 'password',
+                    placeholder: 'Enter your password'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    confirm: true
+                },
+                valid: false,
+                touched: false,
+                label: true
+            },
+            passwordRepeat: {
+                elementType: 'input-v1',
+                elementConfig: {
+                    type: 'password',
+                    placeholder: 'Confirm password'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    confirm: true
+                },
+                valid: false,
+                touched: false,
+                label: true
+            },
+            accept: {
+                elementType: 'radio-v1',
+                elementConfig: {
+                    name: 'accept',
+                    options: [
+                        {text: 'accept', displayText: "Accept", value:'accept'},
+                        {text: 'decline', displayText: "Decline", value:'decline'}
+                    ]
+                },
+                value: '',
+                validation: {},
+                valid: true,
+                touched: false,
+                label: true
+            }
+
+        }
+    };
+
+    checkValidity(value, rules, inputIdentifier) {
+        let isValid = true;
+        if (!rules) {
+            return true
+        }
+
+        if (rules.required) {
+            isValid = value.trim() !== '';
+        }
+
+        if (rules.minLength) {
+            isValid = value.length >= rules.minLength && isValid;
+        }
+
+        if (rules.maxLength) {
+            isValid = value.length <= rules.maxLength && isValid;
+        }
+
+        if (rules.isEmail) {
+            isValid = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(value) && isValid;
+        }
+
+        if (rules.isNumeric) {
+            isValid = /^\d+$/.test(value) && isValid;
+        }
+
+        if (rules.confirm) {
+            const updateSignupForm = {
+                ...this.state.signupForm
+            };
+
+            if (inputIdentifier === "password") {
+                isValid = value === this.state.signupForm.passwordRepeat.value && isValid;
+                updateSignupForm.passwordRepeat.valid = isValid;
+            } 
+            else {
+                isValid = value === this.state.signupForm.password.value && isValid;
+                updateSignupForm.password.valid = isValid;
+            }
+            console.log("aaaaa " + isValid );
+            this.setState({signupForm: updateSignupForm});
+        }
+
+        return isValid;
+    }
+
+    inputChangedHandler = (event, inputIdentifier) => {
+        const updateSignupForm = {
+            ...this.state.signupForm
+        };
+        const updateFormElement = {
+            ...updateSignupForm[inputIdentifier]
+        };
+        updateFormElement.value = event.target.value;
+        updateFormElement.valid = this.checkValidity(updateFormElement.value, updateFormElement.validation, inputIdentifier);
+        updateFormElement.touched = true;
+        updateSignupForm[inputIdentifier] = updateFormElement;
+        console.log(event.target.value);
+        console.log(event.target.checked);
+
+        this.setState({signupForm: updateSignupForm});
+    }
+
+
+    render () {
+        const sendRequestHandler = () => {
+            if (this.state.signupForm.email.valid && 
+                this.state.signupForm.nickname.valid &&
+                this.state.signupForm.password.valid){
+                    this.props.signup(this);
+            }
+            else {
+                this.props.openErrorMessage('Please fill in the empty row or check ' +
+                'the information has been entered correctly');
+            }
+        }
+
+        return (
+            <div className="form-main" style={{textAlign:this.props.loading?"center":null}}>
+                <Loader load={this.props.loading}>
+                    <div className="form-main-signup">
+                        <div className="form-main-signup-h">
+                            <Hsecondary text="New Account"/>
+                        </div>
+                        {Object.keys(this.state.signupForm).map(key => (
+                            <Input
+                                key={key}
+                                elementType={this.state.signupForm[key].elementType}
+                                elementConfig={this.state.signupForm[key].elementConfig}
+                                value={this.state.signupForm[key].value}
+                                invalid={!this.state.signupForm[key].valid}
+                                shouldValidate={this.state.signupForm[key].validation}
+                                touched={this.state.signupForm[key].touched}
+                                changed={(event) => this.inputChangedHandler(event, key)}
+                                label={this.state.signupForm[key].label}
+                                />
+                        ))}
+                        <div className="form-main-btn" onClick={sendRequestHandler}><BtnAn color={"blue"} text={"sign up"} /></div>
+                    </div>
+                </Loader>
+                <div className="form-main-content">
+                    <h2 className="form-main-content-h">Sign up now!</h2>
+                    <p className="form-main-content-t">fdsfdsfsdfsd df sdfsdfsdf sdffdffgfgfd ggfd gdfg dfg   gfgdfgdfg</p>
+                </div>
+            </div>
+        );
+    }
+};
+
+const mapStateToProps = state => {
+    return {
+        loading: state.form.loading.signup
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        signup: (comp) => dispatch( action.signup(
+            comp.state.signupForm.email.value,
+            comp.state.signupForm.nickname.value,
+            comp.state.signupForm.password.value
+            )
+        ),
+        openErrorMessage : (msg) => dispatch (action.compFailed(msg, 'signup'))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormMain);

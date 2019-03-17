@@ -1,0 +1,61 @@
+@import "../../sass-base/main.scss";
+.btn-nav {
+    height: $card-height;
+    width: $card-width/2;
+    border: .3rem solid $color-primary;
+    background-color: $color-grey-light;
+    border-radius: .5rem;
+    box-sizing: border-box;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    transition: .2s all;
+    padding:0;
+    margin:0;
+    display: inline-block;
+
+    &::before {
+        background: $color-primary;
+        content: "";
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        transition: all .2s ease-out;
+        width: 0;
+        height: 110%;
+    }
+
+    &:hover > &-char {
+        color: $color-grey-light;
+    }
+
+    &:hover::before{
+        width: 210%;
+    }
+
+    &-char {
+        font-size: 7rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        z-index: 2;
+        color: $color-primary;
+    }
+
+    &-side {
+        &-left::before{
+            position: absolute;
+            top: 50%;
+            left: 0%;
+        }
+        
+        &-right::before{
+            position: absolute;
+            top: 50%;
+            left: 100%;
+        }
+    }
+    
+}
+

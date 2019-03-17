@@ -1,0 +1,50 @@
+@import "../../sass-base/main.scss";
+
+.btn-purchase {
+    text-transform: uppercase;
+    padding: .3rem .3rem;
+    border-radius: 10rem;
+    transition: all .2s;
+    font-size: 1.4rem;
+    display: block;
+    width: 60%;
+    margin: 0 auto;
+    box-sizing: border-box;
+
+    &:active {
+       opacity: 0.5; 
+    }
+
+    &-inside {
+        border-radius: 10rem;
+        padding: 1rem 2rem;
+    }
+}
+
+.blue {
+    color:$color-primary-dark;
+    background-color: $color-white;
+    border: .2rem solid $color-primary-dark;
+
+    & ~ .btn-purchase-inside {
+        border: none;
+    }
+
+    &:hover {
+        color:$color-white;
+        background-color: $color-primary-dark;
+        border: .2rem solid $color-white;
+    }
+}
+
+.yellow {
+    color:$color-orange-yellow;
+    background-color: $color-white;
+    border: .2rem solid $color-orange-yellow;
+
+    &:hover {
+        color:$color-white;
+        background-color: $color-orange-yellow;
+        border: .2rem solid $color-white;
+    }
+}

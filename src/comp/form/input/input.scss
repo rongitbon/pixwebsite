@@ -1,0 +1,249 @@
+@import "../../../sass-base/main.scss";
+
+.input {
+    width: 100%;
+    padding: .1rem;
+    box-sizing: border-box;
+
+    &-v1 {
+        font-size: 1.5rem;
+        font-family: inherit;
+        padding: 1.5rem 2rem;
+        border-radius: .2rem;
+        background-color: rgba($color-grey-light-v2, .5);
+        color: $color-grey-dark-v2;
+        border: none;
+        border-bottom: .3rem solid transparent; 
+        width: 100%;
+        box-sizing: border-box;
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 1rem 2rem rgba($color-black, .1);
+            border-bottom: .3rem solid $color-primary;
+        }
+
+        &:focus:invalid {
+            outline: none;
+            box-shadow: 0 1rem 2rem rgba($color-black, .1);
+            border-bottom: .3rem solid $color-orange-yellow;
+        }
+
+        &::-webkit-input-placeholder {
+            color: $color-grey-dark;
+        }
+
+        &:placeholder-shown + .label{
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-4rem);
+        }
+
+    }
+}
+
+.textarea {
+    width: 100%;
+    padding: .1rem;
+    box-sizing: border-box;
+
+    &-v1 {
+        font-size: 1.5rem;
+        font-family: inherit;
+        padding: 1.5rem 2rem;
+        border-radius: .2rem;
+        background-color: rgba($color-grey-light-v2, .5);
+        color: $color-grey-dark-v2;
+        border: none;
+        border-bottom: .3rem solid transparent; 
+        width: 100%;
+        box-sizing: border-box;
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 1rem 2rem rgba($color-black, .1);
+            border-bottom: .3rem solid $color-primary;
+        }
+
+        &:focus:invalid {
+            outline: none;
+            box-shadow: 0 1rem 2rem rgba($color-black, .1);
+            border-bottom: .3rem solid $color-orange-yellow;
+        }
+
+        &::-webkit-input-placeholder {
+            color: $color-grey-dark;
+        }
+
+        &:placeholder-shown + .label{
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-4rem);
+        }
+    }
+}
+
+.select {
+    width: 100%;
+    padding: .1rem;
+    box-sizing: border-box;
+
+    &-v1 {
+        font-size: 1.5rem;
+        font-family: inherit;
+        padding: 1.5rem 2rem;
+        border-radius: .2rem;
+        background-color: rgba($color-grey-light-v2, .5);
+        color: $color-grey-dark-v2;
+        border: none;
+        border-bottom: .3rem solid transparent; 
+        width: 100%;
+        box-sizing: border-box;
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 1rem 2rem rgba($color-black, .1);
+            border-bottom: .3rem solid $color-primary;
+        }
+
+        &:focus:invalid {
+            outline: none;
+            box-shadow: 0 1rem 2rem rgba($color-black, .1);
+            border-bottom: .3rem solid $color-orange-yellow;
+        }
+
+        &::-webkit-input-placeholder {
+            color: $color-grey-dark;
+        }
+
+        & + .label{
+            visibility: hidden;
+        }
+    }
+}
+
+.label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-left: 2rem;
+    margin-top: .7rem;
+    display: block;
+    transition: all .3s;
+}
+
+.radio-v1 {
+    width: 49%;
+    display: inline-block;
+    line-height: 300%;
+
+    @include respond(small) {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    &-input {
+        display: none;
+    }
+
+    &-label {
+        font-size: 1.6rem;
+        cursor: pointer;
+        position: relative;
+        padding-left: 4.5rem;
+    }
+
+    &-button {
+        height: 3rem;
+        width: 3rem;
+        border: 0.5rem solid $color-primary;
+        border-radius: 50%;
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        top: -.7rem;
+
+        &::after {
+            content: "";
+            height: 1.3rem;
+            width: 1.3rem;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: $color-primary;
+            opacity: 0;
+            transition: opacity;
+        }
+    }
+
+    &-input:checked ~ &-label &-button::after {
+        opacity: 1;
+    }
+}
+
+.radio-v2 {
+    @include menuinput;
+}
+
+.checkbox-v1 {
+    @include menuinput;
+}
+
+.search-box-v1 {
+    background-color: $color-white;
+    border: .27rem solid $color-primary;
+    border-radius: 4rem;
+    height: 4.5rem;
+    transition: all .4s;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    &-btn {
+        color: $color-primary;
+        display: inline-flex;
+        width: 3.2rem;
+        height: 3.2rem;
+        font-size: 1.7rem;
+        border-radius: 50%;
+        background-color: inherit;
+        font-size: 1.7rem;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        
+    }
+
+    &-input {
+        color: $color-grey-dark;
+        border: none;
+        background: none;
+        outline: none;
+        font-size: 1.7rem;
+        line-height: 4rem;
+        width: 25rem;
+        padding-left: 2rem;
+        transition: all .4s;
+
+        @include respond(average) {
+            width: 18rem;
+        }
+
+        @include respond(small) {
+            width: 17rem;
+        }
+        
+    }
+
+    &:hover > &-input , &-input:focus {
+        width: 35rem;
+
+        @include respond(average) {
+            width: 28rem;
+        }
+
+        @include respond(small) {
+            width: 17rem;
+        }
+    }
+}

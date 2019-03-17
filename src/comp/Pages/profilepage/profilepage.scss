@@ -1,0 +1,43 @@
+@import "../../../sass-base/main.scss";
+
+.profilepage {
+    
+    &-pos {
+        margin-top: 10rem;
+        height: 100vh;
+        overflow-wrap: break-word;
+    }
+
+    &-height {
+        height: 100%;
+    }
+
+    &-profile{
+        &-img {
+            width: 25vh;
+            height: 25vh;
+            border-radius: 2rem;
+        }
+
+        &-h {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: $color-primary;
+        }
+
+        &-content {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+    }
+
+    &-book {
+        height: fit-content;
+        height: 100%;
+
+        @include respond(small) {
+            height: 50%;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+@import "../../sass-base/main.scss";
+
+.form-signup {
+    width: 100%;
+    background-color: $color-white;
+    padding: 2.5rem;
+
+    &-h {
+        padding-bottom: 2.5rem; 
+        padding-left: 2rem; 
+    }
+
+    &-btn {
+        padding-top: 2.5rem; 
+        padding-left: 2rem; 
+    }
+}

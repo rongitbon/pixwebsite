@@ -1,0 +1,69 @@
+@import '../../sass-base/main.scss';
+
+.cardV2 {
+    perspective: 150rem;
+    -moz-perspective: 150rem;
+    height: $card-height;
+    width: $card-width;
+    position: relative;
+    margin: 1rem  1rem 0  1rem;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 5px;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+    display: inline-block;
+    overflow: hidden;
+    transition: all .2s ease-out;
+
+    &-cancel {
+        position: absolute;
+        top: 5%;
+        right: 10%;
+        transform: translate(50%, -50%);
+    }
+
+    &-img {
+        height: 15rem;
+        width: 15rem;
+    }
+
+    &-content {
+        text-align: center;
+        border-top: .1rem solid rgba($color-grey-dark , 0.5);
+        width: 80%;
+        height: 30%;
+        overflow: hidden;
+        margin: 3rem auto 0 auto;
+
+        &-h {
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: $color-primary-dark;
+            margin-top: 1rem;
+        }
+
+        &-t {
+            font-size: 1.2rem;
+            color: $color-grey
+        }
+    }
+
+    &-price {
+        color: $color-white;
+        width: 100%;
+        margin-top: 7.5%;
+        text-align: center;
+        font-size: 4.5rem;
+        font-weight: 100;
+        background-image: linear-gradient(to left top,rgba($color-primary, 0.8),rgba($color-primary-dark, 0.8));
+        background-size: cover;
+        background-position: bottom; 
+        clip-path: polygon(0 15%, 50% 0%, 100% 15%, 100% 100%, 0 100%); 
+        transition: all .2s ease-out;
+    }
+
+    &:hover > &-price {
+        margin-top: 0;
+    }
+}

@@ -1,0 +1,64 @@
+@mixin clearfix {
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+@mixin menuinput {
+    width: 100%;
+    display: block;
+
+    &-input {
+            display:none;
+        }
+
+        &-label {
+            display: block;
+            font-size: 1.4rem;
+            cursor: pointer;
+            padding: 1.6rem 2.6rem;
+            background-color: $color-grey-dark-v2;
+            color: $color-white;
+            position: relative;
+        }
+
+        &-label::before {
+            content: "";
+            position: absolute;
+            width: .6rem;
+            height: 100%;
+            background-color: $color-primary-dark;
+            left: 0;
+            top: 0;
+            transition: all .3s;
+            opacity: 0;
+        }
+
+        &-input:hover ~ &-label::before ,&-label:hover:before {
+            opacity: .5;
+        }
+
+        &-input:checked ~ &-label::before ,&-label:hover:before {
+            opacity: 1;
+        }
+}
+
+@mixin respond($breakpoint) {
+    @if $breakpoint == very-small {
+        @media only screen and (max-width: 37.5em) { @content };
+    }
+
+    @if $breakpoint == small {
+        @media only screen and (max-width: 62.5em) { @content };
+    }
+
+    @if $breakpoint == average {
+        @media only screen and (max-width: 87.5em) { @content };
+    }
+
+    @if $breakpoint == large {
+        @media only screen and (max-width: 112.5em) { @content };
+    }
+}

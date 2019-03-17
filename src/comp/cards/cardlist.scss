@@ -1,0 +1,37 @@
+@import '../../sass-base/main.scss';
+
+.list {
+    margin: 0  auto;
+    height: 46rem;
+    //width: $card-space*7 + $card-width*5;
+    text-align: center;
+    &-card {
+        padding: 0;
+        //width: 106rem;
+        overflow-x: hidden;
+        display: inline-block;
+        vertical-align: top;
+        
+        &-pocket {
+            transition: .2s ease-out all;
+            height: 46rem;
+            margin: 0 ;
+            overflow-x: hidden;
+            text-align: left; 
+        }
+    }
+}
+
+.card {
+    display: inline-block;
+    margin-top: 2rem;
+    &:not(:last-child){
+        margin-right: $card-space;
+    }
+    
+}
+
+.btn-nav {
+    margin: 2rem 2rem 0 2rem;
+    display: inline-block;
+}

@@ -1,0 +1,58 @@
+@import '../../sass-base/main.scss';
+
+.cardadd {
+    position: relative;
+    height: $card-height;
+    width: $card-width;
+    background-color: $color-grey-light-v2;
+    border: 1px solid $color-grey;
+    border-radius: 3px;
+    margin: 1rem 1rem 0 1rem;
+    display: inline-block;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+
+    &-btn {
+        position: absolute;
+        height: 10rem;
+        width: 10rem;
+        top: 50%;
+        right: 50%;
+        transform: translate(50%, -50%);
+        border-radius: 50%; 
+        background-color: $color-grey;
+        transition: all .2s ease-out;
+
+        &::before {
+            content: "";
+            position: absolute;
+            height: 7rem;
+            width: 2rem;
+            background-color: $color-grey-light-v2;
+            top: 50%;
+            right: 50%;
+            transform: translate(50%, -50%);
+            border-radius: .7rem;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            height: 2rem;
+            width: 7rem;
+            background-color: $color-grey-light-v2;
+            top: 50%;
+            right: 50%;
+            transform: translate(50%, -50%);
+            border-radius: .7rem;
+        }
+    }
+
+    &:hover > &-btn {
+        transform: translate(50%, -50%) rotate(225deg);
+    }
+
+    &:active > &-btn {
+        transform: translate(50%, -50%) rotate(180deg);
+    }
+
+}

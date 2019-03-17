@@ -1,0 +1,42 @@
+@import '../../sass-base/main.scss';
+
+.message {
+    border-radius: 2.5rem;
+    width: 50rem;
+    overflow: hidden;
+    background: $color-grey-light;
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1005;
+
+    animation-name: moveInDown;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+
+    &-header {
+        width: 100%;
+        padding: 1.5rem;
+        background-color: $color-primary;
+        text-align: center;
+    }
+
+    &-content {
+        text-align: center;
+        padding: 1.5rem;
+        font-size: 1.8rem
+    }
+
+    &-btn {
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    &-cancel {
+        position: absolute;
+        top: 2.3rem;
+        right: 2.5rem;
+        transform: translate(50%, -50%);
+    }
+}

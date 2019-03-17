@@ -1,0 +1,22 @@
+@import '../../../sass-base/main.scss';
+
+
+.gallery {
+
+    &-h {
+        height: 31vh;
+        
+        background-image: linear-gradient(to left top,rgba($color-primary, 0.8),rgba($color-primary-dark, 0.8)), url(../../../img/ben-wicks-1115168-unsplash.jpg);
+        background-size: cover;
+        background-position: center;
+        position: relative; 
+
+        &-search-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+    }
+}
