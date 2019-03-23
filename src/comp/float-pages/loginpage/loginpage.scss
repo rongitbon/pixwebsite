@@ -45,6 +45,14 @@
         background-color: inherit;
         color: inherit;
     }
+
+    &-cancel {
+        position: absolute;
+        top: 1.7rem;
+        right: 2.7rem;
+        z-index: 1;
+        transform: translate(50%, -50%);
+    }
 }
 
 @keyframes moveInDown{

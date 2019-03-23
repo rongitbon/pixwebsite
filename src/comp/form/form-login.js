@@ -70,7 +70,7 @@ class FormLogin extends Component {
         }
 
         if (rules.isNumeric) {
-            isValid = /^\d+$/.test(value) && isValid;
+            isValid = /-?\d+(\.\d+)/.test(value) && isValid;
         }
 
         return isValid;
@@ -125,7 +125,7 @@ class FormLogin extends Component {
                             label={this.state.signupForm[key].label}
                             />
                     ))}
-                    <div className="form-login-btn" onClick={sendRequestHandler}><BtnAn color={"blue"} text={"sign up"} /></div>
+                    <div className="form-login-btn" onClick={sendRequestHandler}><BtnAn color={"blue"} text={"login"} /></div>
                 </Loader>
             </div>
         );

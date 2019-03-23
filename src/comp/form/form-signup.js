@@ -113,7 +113,7 @@ class FormSignup extends Component {
         }
 
         if (rules.isNumeric) {
-            isValid = /^\d+$/.test(value) && isValid;
+            isValid = /-?\d+(\.\d+)/.test(value) && isValid;
         }
         if (rules.confirm) {
             const updateSignupForm = {

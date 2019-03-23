@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import CardBook from '../../cards/cardbook.js';
 import SearchMenu from '../../search-menu/search-menu.js';
@@ -19,7 +20,7 @@ class Gallerypage extends Component {
             elementType: 'search-box-v1',
             elementConfig: {
                 type: 'search',
-                placeholder: 'search crearture'
+                placeholder: 'search creature'
             },
             value: '',
             validation: {},
@@ -65,7 +66,10 @@ class Gallerypage extends Component {
                             shouldValidate={this.state.searchBox.validation}
                             touched={this.state.searchBox.touched}
                             changed={(event) => this.searchChangedHandler(event)}
-                            clicked={()=> this.props.getCardsByName(this.state.searchBox.value)}
+                            clicked={()=> {
+                                this.props.history.push('/gallery/1');
+                                this.props.getCardsByName(this.state.searchBox.value);
+                            }}
                             label={this.state.searchBox.label}
                              />
                     </div>
@@ -104,4 +108,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Gallerypage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Gallerypage));

@@ -69,7 +69,7 @@ class Homepage extends Component {
                         <span className="h-primary-s">The house of the pixels</span>
                     </h1>
 
-                    <BtnAn className="btn-an" text="Helllooooo!!!" color='white' />
+                    <BtnAn className="btn-an" text="Go to gallery" color='white' />
                 </div>
                     
                 </header>

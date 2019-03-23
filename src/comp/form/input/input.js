@@ -51,6 +51,7 @@ const Input = (props) => {
                     {...props.elementConfig}
                     value={props.value}
                     onChange={props.changed}
+                    onKeyPress={(event) => event.key === "Enter"?props.clicked(event):null}
                     />
                 <p className="search-box-v1-btn" onClick={props.clicked}>⏪</p>
             </div>

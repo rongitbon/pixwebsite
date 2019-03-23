@@ -21,13 +21,13 @@ class CardBook extends Component {
     }
     moveNext = (comp) => {
         comp.setState({
-            pages: Math.ceil(comp.props.user.length / comp.state.num_cards_page) >  
-                comp.state.pages ? comp.state.pages + 1 : Math.ceil(comp.props.user.length / comp.state.num_cards_page)
+            pages: Math.ceil(comp.props.gallery.length / comp.state.num_cards_page) >  
+                comp.state.pages ? comp.state.pages + 1 : Math.ceil(comp.props.gallery.length / comp.state.num_cards_page)
         });
     }
 
     movePageByNumber = (num) => {
-        if( num > 0 && num <= Math.ceil(this.props.user.length / this.state.num_cards_page)) {
+        if( num > 0 && num <= Math.ceil(this.props.gallery.length / this.state.num_cards_page)) {
             this.setState({pages: num});
         }
     }
@@ -36,7 +36,7 @@ class CardBook extends Component {
         return (
             <div className="cardbook">
                 <div>
-                {this.props.user.map((card, index) => {
+                {this.props.gallery.map((card, index) => {
                     if((this.state.pages-1)*this.state.num_cards_page <= index && 
                         this.state.pages*this.state.num_cards_page > index){ 
                             return <Card card={card} key={card.name}/>
@@ -49,7 +49,7 @@ class CardBook extends Component {
                         num={this.state.pages > 1? this.state.pages - 1 : 1}
                         clicked={() => this.movePrevious(this)}/>
                     {Array.from(Array(Math.ceil(
-                        this.props.user.length / this.state.num_cards_page
+                        this.props.gallery.length / this.state.num_cards_page
                         )).keys()).map((num) =>{
                             return <BtnPageNav 
                                 text={num + 1} 
@@ -60,8 +60,8 @@ class CardBook extends Component {
                             })}
                     <BtnPageNav 
                         text=">" 
-                        num={Math.ceil(this.props.user.length / this.state.num_cards_page) >  
-                            this.state.pages ? this.state.pages + 1 : Math.ceil(this.props.user.length / this.state.num_cards_page)} 
+                        num={Math.ceil(this.props.gallery.length / this.state.num_cards_page) >  
+                            this.state.pages ? this.state.pages + 1 : Math.ceil(this.props.gallery.length / this.state.num_cards_page)} 
                         clicked={() => this.moveNext(this)}/>
                 </div>
             </div>
@@ -71,7 +71,7 @@ class CardBook extends Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.card.userCards,
+        gallery: state.card.galleryCards,
         load: state.card.load.book
     };
 }

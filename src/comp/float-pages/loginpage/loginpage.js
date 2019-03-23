@@ -6,6 +6,7 @@ import Message from '../../message/message.js';
 import Input from '../../form/input/input.js';
 import Hsecondary from "../../heading-secondary/h-secondary.js";
 import BtnAn from "../../button/btn-an.js";
+import BtnCancel from "../../button/btn-cancel.js";
 import FormLogin from "../../form/form-login.js";
 import FormSignup from "../../form/form-signup.js";
 import * as actionType from "../../../store/actions/actionType.js";
@@ -41,6 +42,8 @@ class Loginpage extends Component {
                 {this.props.errorLogin?errorMsg("login", this.props.errorLoginMessage):null}
                 {this.props.errorSignup?errorMsg("signup", this.props.errorSignupMessage):null}
                 <div className="loginpage">
+                    <div className="loginpage-cancel" onClick={this.props.cancel}>
+                        <BtnCancel color={this.state.formfront === 'login'?"white":"blue"} /></div>
                     <input
                         className="loginpage-input"
                         type="radio"

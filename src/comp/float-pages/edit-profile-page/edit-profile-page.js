@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import Input from '../../form/input/input.js';
 import Hsecondary from "../../heading-secondary/h-secondary.js";
+import Loader from '../../loader/loader.js';
 import BtnAn from "../../button/btn-an.js";
+import BtnCancel from "../../button/btn-cancel.js";
+import * as action from '../../../store/actions/index.js';
 import "./edit-profile-page.scss";
 
 
@@ -16,7 +21,7 @@ class EditProfilepage extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true,
+                    required: false,
                 },
                 valid: false,
                 touched: false,
@@ -59,7 +64,7 @@ class EditProfilepage extends Component {
                 },
                 value: '',
                 validation: {
-                    required: true
+                    required: false
                 },
                 valid: false,
                 touched: false,
@@ -67,6 +72,30 @@ class EditProfilepage extends Component {
             }
         }
     };
+
+    componentWillMount () {
+        const updateEditProfileForm = {
+            ...this.state.editProfileForm
+        };
+
+        updateEditProfileForm.imgpath.value = this.props.user.image?this.props.user.image:"";
+        updateEditProfileForm.imgpath.valid = 
+            this.checkValidity(updateEditProfileForm.imgpath.value, updateEditProfileForm.imgpath.validation);
+
+        updateEditProfileForm.profiledescription.value = this.props.user.description?this.props.user.description:"";
+        updateEditProfileForm.profiledescription.valid = 
+            this.checkValidity(updateEditProfileForm.profiledescription.value, updateEditProfileForm.profiledescription.validation);
+
+        updateEditProfileForm.email.value = this.props.user.email;
+        updateEditProfileForm.email.valid = 
+            this.checkValidity(updateEditProfileForm.email.value, updateEditProfileForm.email.validation);
+
+        updateEditProfileForm.nickname.value = this.props.user.nickname;
+        updateEditProfileForm.nickname.valid = 
+            this.checkValidity(updateEditProfileForm.nickname.value, updateEditProfileForm.nickname.validation);
+
+        this.setState({editProfileForm: updateEditProfileForm});
+    }
 
     checkValidity(value, rules) {
         let isValid = true;
@@ -91,7 +120,7 @@ class EditProfilepage extends Component {
         }
 
         if (rules.isNumeric) {
-            isValid = /^\d+$/.test(value) && isValid;
+            isValid = /-?\d+(\.\d+)/.test(value) && isValid;
         }
 
         return isValid;
@@ -120,28 +149,64 @@ class EditProfilepage extends Component {
     }
 
     render () {
+        const sendRequestHandler = () => {
+            if (this.state.editProfileForm.nickname.valid && 
+                this.state.editProfileForm.email.valid &&
+                this.props.user.id ){
+                    console.log("connect");
+                    this.props.updateProfile(this);
+            }
+            else {
+                console.log("error");
+            }
+        }
+
         return (
             <div className="editProfilePage">
-                <div className="editProfilePage-h"><Hsecondary text={"updating item"} /></div>
-                <div style={{padding: "5rem"}}>
-                    {Object.keys(this.state.editProfileForm).map(key => (
-                    <Input
-                        key={key}
-                        elementType={this.state.editProfileForm[key].elementType}
-                        elementConfig={this.state.editProfileForm[key].elementConfig}
-                        value={this.state.editProfileForm[key].value}
-                        invalid={!this.state.editProfileForm[key].valid}
-                        shouldValidate={this.state.editProfileForm[key].validation}
-                        touched={this.state.editProfileForm[key].touched}
-                        changed={(event) => this.inputChangedHandler(event, key)}
-                        label={this.state.editProfileForm[key].label}
-                        />
-                    ))}
-                </div>
-                <div className="editProfilePage-btn"><BtnAn color={"blue"} text={"sign up"} /></div>
+                <div className="editProfilePage-cancel" onClick={this.props.cancel}><BtnCancel color="blue" /></div>
+                <Loader load={this.props.loading}>
+                    <div className="editProfilePage-h"><Hsecondary text={"update item"} /></div>
+                    <div style={{padding: "5rem"}}>
+                        {Object.keys(this.state.editProfileForm).map(key => (
+                        <Input
+                            key={key}
+                            elementType={this.state.editProfileForm[key].elementType}
+                            elementConfig={this.state.editProfileForm[key].elementConfig}
+                            value={this.state.editProfileForm[key].value}
+                            invalid={!this.state.editProfileForm[key].valid}
+                            shouldValidate={this.state.editProfileForm[key].validation}
+                            touched={this.state.editProfileForm[key].touched}
+                            changed={(event) => this.inputChangedHandler(event, key)}
+                            label={this.state.editProfileForm[key].label}
+                            />
+                        ))}
+                    </div>
+                    <div className="editProfilePage-btn" onClick={() => sendRequestHandler()}><BtnAn color={"blue"} text={"update"} /></div>
+                </Loader>
             </div>
         );
     }
 }
 
-export default EditProfilepage;
+const mapStateToProps = state => {
+    return {
+        user: state.account.user,
+        loading: state.form.loading.editProfile
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        updateProfile: (comp) => dispatch( action.updateProfile(
+            comp.props.user.id,
+            comp.props.user.email,
+            comp.state.editProfileForm.nickname.value, 
+            comp.state.editProfileForm.profiledescription.value,
+            comp.state.editProfileForm.email.value,
+            comp.state.editProfileForm.imgpath.value
+            )
+        )
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfilepage);

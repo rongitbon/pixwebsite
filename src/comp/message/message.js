@@ -9,7 +9,10 @@ const Message = (props) => {
         <div className="message">
             <div className="message-cancel" onClick={props.cancel_clicked}><BtnCancel color="white"/></div>
             <div className="message-header"><Hsecondary color="white" text={props.header} /></div>
-            <div className="message-content">{"" + props.content}<br/><br/></div>
+            <div className="message-content">
+                {Array.isArray(props.content)? props.content.map((url, i) => <div key={i}>{url}<br/></div>) : props.content}
+                <br/><br/>
+            </div>
             <div className="message-btn" onClick={props.btn_clicked}><BtnAn text="OK" color="blue"/></div>
         </div>
     );

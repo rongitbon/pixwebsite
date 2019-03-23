@@ -37,6 +37,13 @@
     &-btn {
         margin-bottom: 2rem;
     }
+
+    &-cancel {
+        position: absolute;
+        top: 5%;
+        right: 5%;
+        transform: translate(50%, -50%);
+    }
 }
 
 @keyframes increasesize{

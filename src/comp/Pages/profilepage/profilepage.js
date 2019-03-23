@@ -7,6 +7,7 @@ import Backdrop from "../../backdrop/backdrop.js";
 import Message from '../../message/message.js';
 import Footer from '../../footer/footer.js';
 import Loader from '../../loader/loader.js';
+import BtnAnV3 from "../../button/btn-an-v3.js";
 import * as card from  '../../../store/actions/index.js';
 import * as actionType from '../../../store/actions/actionType.js';
 import './profilepage.scss';
@@ -46,11 +47,13 @@ class Profilepage extends Component {
                                 <img className='profilepage-profile-img' src={vogggid}>
                                 </img>
                                 <h2 className='profilepage-profile-h'>
-                                    bhfhgf fg
+                                    {this.props.user.nickname}
                                 </h2>
                                 <p className='profilepage-profile-content'>
-                                    jhnkljkjil ioihukhlkjhjk  huhuhuyhu  hjk h jkh  yu hijhuhu yuy uyh ui yu yiuyui yu k y  uyu j yy   uyukhyuk hh jh k   gugh kj 
+                                    {this.props.user.description}
                                 </p>
+                                <div style={{marginTop: "4rem"}}></div>
+                                <BtnAnV3 text="edit profile" clicked={this.props.openEditProfileFrom}/>
                             </div>
                         </div>
                         <div className="col-3-of-4  profilepage-book" style={{textAlign:this.props.loading?"center":null}}>
@@ -82,6 +85,7 @@ const mapDispatchToProps = dispatch => {
             comp.props.user.id
             )
         ),
+        openEditProfileFrom: () => dispatch({ type: actionType.OPEN_EDIT_PROFILE_FORM}),
         closeErrorMessage: (comp) => dispatch({ type: actionType.CLOSE_ERROR_MESSAGE,
             comp: comp})
     }

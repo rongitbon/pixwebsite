@@ -1,6 +1,7 @@
 export { 
     login,
-    signup 
+    signup,
+    updateProfile
 } from './account.js';
 
 export {
@@ -15,3 +16,8 @@ export {
 export {
     compFailed
 } from './form.js'
+
+export {
+    addItem,
+    removeItem
+} from './cart.js';

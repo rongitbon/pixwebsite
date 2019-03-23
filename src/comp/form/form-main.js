@@ -78,8 +78,8 @@ class FormMain extends Component {
                 elementConfig: {
                     name: 'accept',
                     options: [
-                        {text: 'accept', displayText: "Accept", value:'accept'},
-                        {text: 'decline', displayText: "Decline", value:'decline'}
+                        { text: 'accept', displayText: "Accept", value: 'accept' },
+                        { text: 'decline', displayText: "Decline", value: 'decline' }
                     ]
                 },
                 value: '',
@@ -115,7 +115,7 @@ class FormMain extends Component {
         }
 
         if (rules.isNumeric) {
-            isValid = /^\d+$/.test(value) && isValid;
+            isValid = /-?\d+(\.\d+)/.test(value) && isValid;
         }
 
         if (rules.confirm) {
@@ -126,13 +126,13 @@ class FormMain extends Component {
             if (inputIdentifier === "password") {
                 isValid = value === this.state.signupForm.passwordRepeat.value && isValid;
                 updateSignupForm.passwordRepeat.valid = isValid;
-            } 
+            }
             else {
                 isValid = value === this.state.signupForm.password.value && isValid;
                 updateSignupForm.password.valid = isValid;
             }
-            console.log("aaaaa " + isValid );
-            this.setState({signupForm: updateSignupForm});
+            console.log("aaaaa " + isValid);
+            this.setState({ signupForm: updateSignupForm });
         }
 
         return isValid;
@@ -152,29 +152,29 @@ class FormMain extends Component {
         console.log(event.target.value);
         console.log(event.target.checked);
 
-        this.setState({signupForm: updateSignupForm});
+        this.setState({ signupForm: updateSignupForm });
     }
 
 
-    render () {
+    render() {
         const sendRequestHandler = () => {
-            if (this.state.signupForm.email.valid && 
+            if (this.state.signupForm.email.valid &&
                 this.state.signupForm.nickname.valid &&
-                this.state.signupForm.password.valid){
-                    this.props.signup(this);
+                this.state.signupForm.password.valid) {
+                this.props.signup(this);
             }
             else {
                 this.props.openErrorMessage('Please fill in the empty row or check ' +
-                'the information has been entered correctly');
+                    'the information has been entered correctly');
             }
         }
 
         return (
-            <div className="form-main" style={{textAlign:this.props.loading?"center":null}}>
+            <div className="form-main" style={{ textAlign: this.props.loading ? "center" : null }}>
                 <Loader load={this.props.loading}>
                     <div className="form-main-signup">
                         <div className="form-main-signup-h">
-                            <Hsecondary text="New Account"/>
+                            <Hsecondary text="New Account" />
                         </div>
                         {Object.keys(this.state.signupForm).map(key => (
                             <Input
@@ -187,14 +187,14 @@ class FormMain extends Component {
                                 touched={this.state.signupForm[key].touched}
                                 changed={(event) => this.inputChangedHandler(event, key)}
                                 label={this.state.signupForm[key].label}
-                                />
+                            />
                         ))}
                         <div className="form-main-btn" onClick={sendRequestHandler}><BtnAn color={"blue"} text={"sign up"} /></div>
                     </div>
                 </Loader>
                 <div className="form-main-content">
                     <h2 className="form-main-content-h">Sign up now!</h2>
-                    <p className="form-main-content-t">fdsfdsfsdfsd df sdfsdfsdf sdffdffgfgfd ggfd gdfg dfg   gfgdfgdfg</p>
+                    <p className="form-main-content-t"> join us today and create your own beautiful creature</p>
                 </div>
             </div>
         );
@@ -209,13 +209,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        signup: (comp) => dispatch( action.signup(
+        signup: (comp) => dispatch(action.signup(
             comp.state.signupForm.email.value,
             comp.state.signupForm.nickname.value,
             comp.state.signupForm.password.value
-            )
+        )
         ),
-        openErrorMessage : (msg) => dispatch (action.compFailed(msg, 'signup'))
+        openErrorMessage: (msg) => dispatch(action.compFailed(msg, 'signup'))
     }
 }
 

@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const initialState = {
     userCards : [],
+    galleryCards: [],
     cheapestCards: {},
     load: {
         cheapest : {
@@ -29,7 +30,7 @@ const account = (state = initialState, action) => {
             return UpdateState;
 
         case actionTypes.SET_BOOK_CARDS:
-            UpdateState.userCards = action.cards;
+            UpdateState.galleryCards = action.cards;
             UpdateState.load.book = false;
             return UpdateState;
 

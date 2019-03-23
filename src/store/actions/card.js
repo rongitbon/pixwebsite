@@ -30,7 +30,7 @@ export const addCard = (imgpath, itemselection, itemname, itemdescription, itemp
         .catch(error_msg => {
             //dispatch(signupFailed(error))
             dispatch(form.stopLoading('editItem'));
-            dispatch(form.compFailed(error_msg, "editItem"));
+            dispatch(form.compFailed(error_msg.response.data, "editItem"));
         });
     }
 };
@@ -55,7 +55,7 @@ export const getUserCards = (userId) => {
         })
         .catch(error_msg => {
             //dispatch(signupFailed(error))
-            dispatch(form.compFailed(error_msg, "cardScroll"));
+            dispatch(form.compFailed(error_msg.response.data, "cardScroll"));
             dispatch(form.stopLoading('cardScroll'));
         });
     }
@@ -106,7 +106,7 @@ export const getCardsByTheMenu = (time, characters, price) => {
         })
         .catch(error_msg => {
             //dispatch(signupFailed(error))
-            dispatch(form.compFailed(error_msg, "cardBook"));
+            dispatch(form.compFailed(error_msg.response.data, "cardBook"));
             dispatch(form.stopLoading('cardBook'));
         });
     }
@@ -124,7 +124,7 @@ export const getCardsByName = (name) => {
         })
         .catch(error_msg => {
             //dispatch(signupFailed(error))
-            dispatch(form.compFailed(error_msg, "cardBook"));
+            dispatch(form.compFailed(error_msg.response.data, "cardBook"));
             dispatch(form.stopLoading('cardBook'));
         });
     }

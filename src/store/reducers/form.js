@@ -3,11 +3,14 @@ import * as actionTypes from '../actions/actionType.js';
 const initialState = {
     loginFrom: false,
     editItemFrom: false,
+    editProfileFrom: false,
     cartPage: false,
+    message: {open:false, content: null, header: "message"},
     errorForm: {
         login: {error: false, content: null},
         signup: {error: false, content: null},
         editItem: {error: false, content: null},
+        editProfile: {error: false, content: null},
         cardScroll: {error: false, content: null},
         cardBook: {error: false, content: null},
         cardList: {
@@ -21,6 +24,7 @@ const initialState = {
         login: false,
         singup: false,
         editItem: false,
+        editProfile: false,
         cardScroll: false,
         cardBook: false,
         cardList: {
@@ -53,6 +57,16 @@ const form = (state = initialState, action) => {
         
         case actionTypes.CLOSE_EDIT_ITEM_FORM:
             UpdateState.editItemFrom = false;
+
+            return UpdateState;
+
+        case actionTypes.OPEN_EDIT_PROFILE_FORM:
+            UpdateState.editProfileFrom = true;
+
+            return UpdateState;
+        
+        case actionTypes.CLOSE_EDIT_PROFILE_FORM:
+            UpdateState.editProfileFrom = false;
 
             return UpdateState;
 
@@ -107,6 +121,18 @@ const form = (state = initialState, action) => {
                 UpdateState.errorForm[action.comp]["error"] = false;
                 UpdateState.errorForm[action.comp].content = null;
             }
+
+            return UpdateState;
+
+            case actionTypes.OPEN_MESSAGE:
+                UpdateState.message.open = true;
+                UpdateState.message.content = action.message;
+
+            return UpdateState;
+
+            case actionTypes.CLOSE_MESSAGE:
+                UpdateState.message.open = false;
+                UpdateState.message.content = null;
 
             return UpdateState;
 

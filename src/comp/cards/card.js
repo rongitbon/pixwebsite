@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import BtnPurchase from "../button/btn-purchase.js";
 import * as actionType from "../../store/actions/actionType.js";
+import * as action from '../../store/actions/index.js';
 import './card.scss';
 
 
@@ -30,15 +31,15 @@ const Card = (props) => {
                 <p className="card-side-back-price-only">Only</p>
                 <p className="card-side-back-price-value">{"$" + props.card.price}</p>
             </div>
-            <BtnPurchase text="add to cart" color="yellow" clicked={props.openeCartPage} />
-            <BtnPurchase text="buy now" color="blue" clicked={props.openeCartPage} />
+            <BtnPurchase text="add to cart" color="yellow" clicked={props.addItemIntoCart} />
+            <BtnPurchase text="buy now" color="blue" clicked={props.addItemIntoCart} />
         </div>
     </div> );
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, props) => {
     return {
-        openeCartPage: () => dispatch({ type: actionType.OPEN_CART_PAGE})
+        addItemIntoCart: () => dispatch(action.addItem(props.card))
     }
 }
 

@@ -37,6 +37,11 @@ const account = (state = initialState, action) => {
 
             return UpdateState;
 
+        case actionTypes.UPDATE_PROFILE:
+            UpdateState.user = action.user;
+
+            return UpdateState;
+
 
         default:
             return state;

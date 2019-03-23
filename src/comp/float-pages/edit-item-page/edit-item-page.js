@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Input from '../../form/input/input.js';
 import Hsecondary from "../../heading-secondary/h-secondary.js";
 import BtnAn from "../../button/btn-an.js";
+import BtnCancel from "../../button/btn-cancel.js";
 import Loader from '../../loader/loader.js';
 import * as card from '../../../store/actions/index.js';
 import "./edit-item-page.scss";
@@ -16,7 +17,7 @@ class Edititempage extends Component {
                 elementType: 'input-v1',
                 elementConfig: {
                     type: 'text',
-                    placeholder: 'Enter item image path name'
+                    placeholder: 'Enter item path'
                 },
                 value: '',
                 validation: {
@@ -119,7 +120,7 @@ class Edititempage extends Component {
         }
 
         if (rules.isNumeric) {
-            isValid = /^\d+$/.test(value) && isValid;
+            isValid = /-?\d+(\.\d+)/.test(value) && isValid;
         }
 
         return isValid;
@@ -164,8 +165,9 @@ class Edititempage extends Component {
 
         return (
             <div className="editItemPage">
+                <div className="editItemPage-cancel" onClick={this.props.cancel}><BtnCancel color="blue" /></div>
                 <Loader load={this.props.loading}>
-                    <div className="editItemPage-h"><Hsecondary text={"updating item"} /></div>
+                    <div className="editItemPage-h"><Hsecondary text={"update item"} /></div>
                     <div className="row">
                         <div className="col-1-of-4" style={{textAlign: "center"}}>
                             <img className="card-side-front-img" alt='robots' src={`https://robohash.org/${ 
@@ -189,7 +191,7 @@ class Edititempage extends Component {
                             ))}
                         </div>
                     </div>
-                    <div className="editItemPage-btn" onClick={() => sendRequestHandler()}><BtnAn color={"blue"} text={"sign up"} /></div>
+                    <div className="editItemPage-btn" onClick={() => sendRequestHandler()}><BtnAn color={"blue"} text={"update"} /></div>
                 </Loader>
             </div>
         );

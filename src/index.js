@@ -10,6 +10,7 @@ import App from './App';
 import account from './store/reducers/account.js';
 import form from './store/reducers/form.js';
 import card from './store/reducers/card.js';
+import cart from './store/reducers/cart.js';
 
 import * as serviceWorker from './serviceWorker';
 
@@ -18,7 +19,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
     account: account,
     form: form,
-    card: card
+    card: card,
+    cart: cart
 });
 
 const store = createStore(

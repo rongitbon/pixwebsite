@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Input from '../form/input/input.js';
 import Backdrop from "../backdrop/backdrop.js";
 import Loginpage from "../float-pages/loginpage/loginpage.js";
+import * as action from '../../store/actions/index.js';
 import * as actionType from '../../store/actions/actionType.js';
 import './toolbar.scss';
 
@@ -19,7 +20,7 @@ class Toolbar extends Component {
             elementType: 'search-box-v1',
             elementConfig: {
                 type: 'search',
-                placeholder: 'search crearture'
+                placeholder: 'search creature'
             },
             value: '',
             validation: {},
@@ -59,7 +60,7 @@ class Toolbar extends Component {
             return(
                 <div>
                     <Backdrop show={true} clicked={this.props.closeLoginFrom}/>
-                    <Loginpage />
+                    <Loginpage cancel={this.props.closeLoginFrom}/>
                 </div>
             );
         };
@@ -80,7 +81,7 @@ class Toolbar extends Component {
                         className="toolbar-nav-item"
                     >About</NavLink>
                     <NavLink
-                        to="/about"
+                        to="/profile"
                         className="toolbar-nav-item"
                     >Profile</NavLink>
                     <li 
@@ -127,6 +128,10 @@ class Toolbar extends Component {
                             shouldValidate={this.state.searchBox.validation}
                             touched={this.state.searchBox.touched}
                             changed={(event) => this.searchChangedHandler(event)}
+                            clicked={()=> {
+                                this.props.history.push('/gallery/1');
+                                this.props.getCardsByName(this.state.searchBox.value);
+                            }}
                             label={this.state.searchBox.label}
                             />
                     </div>
@@ -148,7 +153,8 @@ const mapDispatchToProps = dispatch => {
     return {
         openLoginFrom: () => dispatch({ type: actionType.OPEN_LOGIN_FORM}),
         closeLoginFrom: () => dispatch({ type: actionType.CLOSE_LOGIN_FORM}),
-        signout: () => dispatch({type: actionType.SIGNOUT})
+        signout: () => dispatch({type: actionType.SIGNOUT}),
+        getCardsByName: (name) => dispatch(action.getCardsByName(name))
     }
 }
 
