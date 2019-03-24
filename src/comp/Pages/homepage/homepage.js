@@ -60,7 +60,7 @@ class Homepage extends Component {
                         <span className="h-primary-s">The house of the pixels</span>
                     </h1>
 
-                    <BtnAn className="btn-an" text="Go to gallery" color='white' />
+                    <BtnAn className="btn-an" text="Go to gallery" color='white' path="/gallery"/>
                 </div>
                     
                 </header>
@@ -70,19 +70,19 @@ class Homepage extends Component {
                         <Hsecondary text="most popular pixel pictures" />
                         <div className="heading-margin"></div>
                         <CardList width={this.state.width} character_type="robotV1"/>
-                        <BtnLink text="to see more" />
+                        <BtnLink text="to see more" path="/gallery"/>
                     </section>
                     <section className="section-show-2">
                         <Hsecondary color="white" text="most popular pixel pictures" />
                         <div className="heading-margin"></div>
                         <CardList width={this.state.width} character_type="robotV2"/>
-                        <BtnLink color="white" text="to see more" />
+                        <BtnLink color="white" text="to see more" path="/gallery"/>
                     </section>
                     <section className="section-show-1">
                         <Hsecondary text="most popular pixel pictures" />
                         <div className="heading-margin"></div>
                         <CardList width={this.state.width} character_type="kitten"/>
-                        <BtnLink text="to see more" />
+                        <BtnLink text="to see more" path="/gallery"/>
                     </section>
                     <section className="section-show-end">
                         <div className="bg-video">

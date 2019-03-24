@@ -3,7 +3,12 @@ import './btn-link.scss';
 
 const BtnLink = (props) => {
     return (
-        <a className={'btn-link btn-link-' + props.color} href="#">{props.text}</a>
+        <a 
+            className={'btn-link btn-link-' + props.color} 
+            href="#" 
+            onClick={props.path?() => props.history.push(props.path):null}>
+                {props.text}
+        </a>
     );
 }
 
