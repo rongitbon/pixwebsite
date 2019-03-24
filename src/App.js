@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Backdrop from "./comp/backdrop/backdrop.js";
 import Message from "./comp/message/message.js";
-import Loginpage from "./comp/float-pages/loginpage/loginpage.js";
 import EditProfilepage from "./comp/float-pages/edit-profile-page/edit-profile-page.js";
 import './App.scss';
 import Homepage from './comp/Pages/homepage/homepage.js';

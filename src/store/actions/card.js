@@ -13,7 +13,7 @@ export const addCard = (imgpath, itemselection, itemname, itemdescription, itemp
     return (dispatch) => {
         dispatch(form.startLoading('editItem'));
         console.log(imgpath, itemselection, itemname, itemdescription, itemprice, userId);
-        axios.post('http://localhost:3001/addcard', {
+        axios.post('https://pixwebsite-server.herokuapp.com/addcard', {
             name: itemname,
             description: itemdescription,
             price: itemprice,
@@ -46,7 +46,7 @@ export const getUserCards = (userId) => {
     return (dispatch) => {
         dispatch(form.startLoading('cardScroll'));
         console.log(userId + "hi");
-        axios.post('http://localhost:3001/get_user_cards', {
+        axios.post('https://pixwebsite-server.herokuapp.com/get_user_cards', {
             owner_id: userId
         })
         .then(card => {
@@ -72,7 +72,7 @@ export const setCheapestCards = (cards, character_type) => {
 export const getCheapestCards = (character_type) => {
     return (dispatch) => {
         console.log(character_type + "hi");
-        axios.post('http://localhost:3001/get_cheapest_cards', {
+        axios.post('https://pixwebsite-server.herokuapp.com/get_cheapest_cards', {
             character_type: character_type
         })
         .then(card => {
@@ -95,7 +95,7 @@ export const setBookCards = (cards) => {
 export const getCardsByTheMenu = (time, characters, price) => {
     return (dispatch) => {
         dispatch(form.startLoading('cardBook'));
-        axios.post('http://localhost:3001/get_cards_by_menu', {
+        axios.post('https://pixwebsite-server.herokuapp.com/get_cards_by_menu', {
             time: time,
             characters: characters,
             price: price
@@ -115,7 +115,7 @@ export const getCardsByTheMenu = (time, characters, price) => {
 export const getCardsByName = (name) => {
     return (dispatch) => {
         dispatch(form.startLoading('cardBook'));
-        axios.post('http://localhost:3001/get_cards_by_name', {
+        axios.post('https://pixwebsite-server.herokuapp.com/get_cards_by_name', {
             name: name.trim()
         })
         .then(card => {
@@ -140,7 +140,7 @@ export const removeCard = (id) => {
 export const deleteCard = (id) => {
     console.log(id)
     return (dispatch) => {
-        axios.delete('http://localhost:3001/deletecard', {
+        axios.delete('https://pixwebsite-server.herokuapp.com/deletecard', {
             data: {
                 id: id
             }

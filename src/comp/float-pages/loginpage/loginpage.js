@@ -3,9 +3,6 @@ import { connect } from 'react-redux';
 
 import Backdrop from '../../backdrop/backdrop.js';
 import Message from '../../message/message.js';
-import Input from '../../form/input/input.js';
-import Hsecondary from "../../heading-secondary/h-secondary.js";
-import BtnAn from "../../button/btn-an.js";
 import BtnCancel from "../../button/btn-cancel.js";
 import FormLogin from "../../form/form-login.js";
 import FormSignup from "../../form/form-signup.js";

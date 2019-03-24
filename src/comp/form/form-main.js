@@ -2,13 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Input from './input/input.js';
-import Backdrop from '../backdrop/backdrop.js';
-import Message from '../message/message.js';
 import Hsecondary from "../heading-secondary/h-secondary.js";
 import BtnAn from "../button/btn-an.js";
 import Loader from "../loader/loader.js";
 import * as action from '../../store/actions/index.js';
-import * as actionType from '../../store/actions/actionType.js';
 import "./form-main.scss";
 
 class FormMain extends Component {

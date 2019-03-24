@@ -1,5 +1,4 @@
 import * as actionTypes from '../actions/actionType.js';
-import axios from 'axios';
 
 const initialState = {
     userCards : [],

@@ -1,25 +1,16 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
-
-import * as action from '../../../store/actions/index.js';
 import * as actionType from '../../../store/actions/actionType.js';
 import BtnAn from '../../button/btn-an.js';
 import BtnLink from '../../button/btn-link.js';
-import BtnPurchase from '../../button/btn-purchase.js';
-import Card from '../../cards/card.js';
 import Toolbar from '../../toolbar/toolbar.js';
 import FormMain from "../../form/form-main.js";
 import video from '../../../img/PexelsVideos1246875.mp4';
 import CardList from '../../cards/cardlist.js';
-import Loginpage from "../../float-pages/loginpage/loginpage.js";
-import Edititempage from "../../float-pages/edit-item-page/edit-item-page.js";
 import Hsecondary from '../../heading-secondary/h-secondary';
 import Backdrop from "../../backdrop/backdrop.js";
-import ItemCart from "../../float-pages/cart-page/item-cart/item-cart.js";
-import Cartpage from "../../float-pages/cart-page/cart-page.js";
 import Footer from '../../footer/footer.js';
-import Loader from '../../loader/loader.js';
 import Message from '../../message/message.js';
 import './homepage.scss';
 

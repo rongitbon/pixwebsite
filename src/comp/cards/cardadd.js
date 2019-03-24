@@ -2,7 +2,6 @@ import  React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import './cardadd.scss';
-import BtnPurchase from "../button/btn-purchase.js";
 import * as actionType from "../../store/actions/actionType.js";
 
 class CardAdd extends Component {

@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Input from '../../form/input/input.js';
-import Hsecondary from "../../heading-secondary/h-secondary.js";
 import BtnAn from "../../button/btn-an.js";
 import BtnCancel from "../../button/btn-cancel.js";
 import ItemCart from "./item-cart/item-cart.js";
 import Scroll from '../../scroll/scroll.js';
-import * as action from '../../../store/actions/index.js';
 import * as actionType from "../../../store/actions/actionType.js";
 import "./cart-page.scss";
 

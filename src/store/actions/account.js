@@ -21,7 +21,7 @@ export const updateProfile = (id, pre_email, nickname, description, email, image
     return (dispatch) => {
         dispatch(form.startLoading('editProfile'));
         console.log(id, pre_email, nickname, description, email, image_path);
-        axios.post('http://localhost:3001/update_profile', {
+        axios.post('https://pixwebsite-server.herokuapp.com/update_profile', {
             nickname: nickname,
             pre_email: pre_email,
             description: description,
@@ -54,7 +54,7 @@ export const login = (email, password) => {
 
     return (dispatch) => {
         dispatch(form.startLoading('login'));
-        axios.post('http://localhost:3001/login', {
+        axios.post('https://pixwebsite-server.herokuapp.com/login', {
             email: email,
             password: password
         })
@@ -73,7 +73,7 @@ export const login = (email, password) => {
 export const signup = (email, nickname, password) => {
     return (dispatch) => {
         dispatch(form.startLoading('signup'));
-        axios.post('http://localhost:3001/signup', {
+        axios.post('https://pixwebsite-server.herokuapp.com/signup', {
             email: email,
             nickname: nickname,
             password: password
